@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boîte à Outils du Bricoleur de l'Indisciple</title>
+  <title>World Café - Mission Locale 2026</title>
   <script src="/_sdk/element_sdk.js"></script>
   <style>
     body {
@@ -38,6 +38,12 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+    }
+
+    .nav-logo {
+      height: 50px;
+      width: auto;
+      margin-right: 20px;
     }
 
     .nav-btn {
@@ -77,7 +83,7 @@
 
     /* Page de couverture */
     .cover-page {
-      background: linear-gradient(135deg, #2897d5 0%, #a3195b 100%);
+      background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
       border-radius: 20px;
       padding: 60px 40px;
       text-align: center;
@@ -87,17 +93,16 @@
     }
 
     .cover-page::before {
-      content: '';
+      content: '☕';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M10 10 L20 10 L20 20 L10 20 Z M30 30 L35 30 L35 35 L30 35 Z M60 15 L70 15 L70 25 L60 25 Z" fill="white" opacity="0.05"/></svg>') repeat;
-      opacity: 0.3;
+      font-size: 200px;
+      opacity: 0.1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
-    .toolbox-icon {
+    .cafe-icon {
       font-size: 120px;
       margin-bottom: 20px;
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
@@ -145,7 +150,7 @@
       margin-bottom: 30px;
       text-align: center;
       padding-bottom: 20px;
-      border-bottom: 4px solid #f39200;
+      border-bottom: 4px solid #8B4513;
     }
 
     .intro-grid {
@@ -185,14 +190,59 @@
       color: #333;
     }
 
-    /* Cartes outils */
-    .cards-container {
+    .rotation-schedule {
+      background: #fff3cd;
+      border: 3px solid #ffc107;
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 30px;
+    }
+
+    .rotation-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #8B4513;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rotation-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .rotation-step {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .rotation-time {
+      font-size: 24px;
+      color: #8B4513;
+      margin-bottom: 5px;
+    }
+
+    .rotation-label {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Tables Thématiques */
+    .tables-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
       gap: 30px;
     }
 
-    .tool-card {
+    .table-card {
       background: white;
       border-radius: 16px;
       padding: 0;
@@ -202,254 +252,264 @@
       border: 3px solid;
     }
 
-    .tool-card:hover {
+    .table-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 35px rgba(0,0,0,0.18);
     }
 
-    .card-header {
+    .table-header {
       padding: 25px;
       background: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.05) 100%);
       border-bottom: 3px solid;
       position: relative;
     }
 
-    .card-icon {
+    .table-number {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      background: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .table-icon {
       font-size: 56px;
       margin-bottom: 12px;
       display: block;
     }
 
-    .card-title {
+    .table-title {
       font-size: 22px;
       font-weight: 800;
       margin: 0;
       line-height: 1.3;
+      padding-right: 60px;
     }
 
-    .card-body {
+    .table-body {
       padding: 25px;
     }
 
-    .card-scenario {
+    .table-question {
       background: #f8f9fa;
       padding: 18px;
       border-radius: 10px;
       margin-bottom: 18px;
       border-left: 4px solid;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .card-mission {
-      font-weight: 700;
-      margin-bottom: 15px;
       font-size: 16px;
-      padding: 12px;
-      background: rgba(243, 146, 0, 0.1);
-      border-radius: 8px;
-    }
-
-    .card-questions {
-      margin: 18px 0;
-    }
-
-    .card-question {
-      padding: 10px 10px 10px 30px;
-      margin: 8px 0;
-      font-size: 14px;
-      line-height: 1.5;
-      position: relative;
-    }
-
-    .card-question::before {
-      content: '▸';
-      position: absolute;
-      left: 10px;
-      font-weight: bold;
-    }
-
-    .card-footer {
-      background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.06) 100%);
-      padding: 20px 25px;
-      border-top: 2px dashed #ddd;
-    }
-
-    .card-bonus {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 14px;
+      line-height: 1.6;
       font-weight: 600;
     }
 
-    .bonus-badge {
-      background: gold;
-      color: #171718;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+    .host-section {
+      background: #fff3e0;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    /* Grille de restitution */
-    .restitution-page {
+    .host-icon {
+      font-size: 32px;
+    }
+
+    .host-text {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .host-text strong {
+      display: block;
+      font-size: 15px;
+      color: #8B4513;
+      margin-bottom: 4px;
+    }
+
+    /* Tableau de Synthèse */
+    .synthesis-page {
       background: white;
       border-radius: 20px;
       padding: 50px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     }
 
-    .restitution-title {
+    .synthesis-title {
       font-size: 36px;
       font-weight: 700;
       margin-bottom: 30px;
       text-align: center;
       padding-bottom: 20px;
-      border-bottom: 4px solid #95c11f;
+      border-bottom: 4px solid #8B4513;
     }
 
-    .restitution-grid {
+    .synthesis-grid {
       display: grid;
-      gap: 25px;
+      gap: 30px;
       margin-top: 30px;
     }
 
-    .restitution-group {
-      background: #f8f9fa;
+    .synthesis-table {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       border-radius: 15px;
       padding: 25px;
       border-left: 6px solid;
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    .group-header {
+    .synthesis-table-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 15px;
       margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid rgba(0,0,0,0.1);
     }
 
-    .group-title {
-      font-size: 22px;
+    .synthesis-table-icon {
+      font-size: 42px;
+    }
+
+    .synthesis-table-title {
+      font-size: 24px;
       font-weight: 700;
     }
 
-    .progress-bar-container {
-      background: #e9ecef;
-      border-radius: 20px;
-      height: 30px;
-      width: 200px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    .synthesis-content {
+      display: grid;
+      gap: 15px;
     }
 
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #95c11f 0%, #2897d5 100%);
-      border-radius: 20px;
-      transition: width 0.5s ease;
+    .round-section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid;
+    }
+
+    .round-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 13px;
+      gap: 8px;
     }
 
-    .idea-input {
+    .ideas-textarea {
       width: 100%;
-      min-height: 120px;
+      min-height: 100px;
       padding: 15px;
       border: 2px solid #dee2e6;
       border-radius: 10px;
       font-size: 15px;
       font-family: inherit;
       resize: vertical;
-      margin-bottom: 15px;
     }
 
-    .idea-input:focus {
+    .ideas-textarea:focus {
       outline: none;
-      border-color: #95c11f;
-      box-shadow: 0 0 0 3px rgba(149, 193, 31, 0.1);
+      border-color: #8B4513;
+      box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
     }
 
-    .score-display {
-      display: flex;
-      gap: 15px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-    }
-
-    .score-badge {
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Synthèse collective */
-    .synthese-page {
+    /* Timer Section */
+    .timer-widget {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
       background: white;
       border-radius: 20px;
-      padding: 50px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    }
-
-    .synthese-title {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      text-align: center;
-      padding-bottom: 20px;
-      border-bottom: 4px solid #d60b52;
-    }
-
-    .synthese-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-
-    .synthese-column {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 15px;
       padding: 25px;
-      border-top: 6px solid;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      min-height: 300px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      min-width: 250px;
+      z-index: 100;
+      border: 3px solid #8B4513;
     }
 
-    .column-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid rgba(0,0,0,0.1);
-    }
-
-    .column-icon {
-      font-size: 36px;
-    }
-
-    .column-title {
-      font-size: 22px;
+    .timer-title {
+      font-size: 16px;
       font-weight: 700;
+      color: #8B4513;
+      margin-bottom: 15px;
+      text-align: center;
     }
 
-    .column-content {
+    .timer-display {
+      font-size: 48px;
+      font-weight: 800;
+      text-align: center;
+      color: #2897d5;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+    }
+
+    .timer-display.warning {
+      color: #f39200;
+    }
+
+    .timer-display.alert {
+      color: #d60b52;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .timer-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
       font-size: 14px;
-      line-height: 1.8;
-      color: #495057;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .timer-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .timer-btn.start {
+      background: #95c11f;
+      color: white;
+    }
+
+    .timer-btn.pause {
+      background: #f39200;
+      color: white;
+    }
+
+    .timer-btn.reset {
+      background: #d60b52;
+      color: white;
+    }
+
+    .timer-round {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+      font-weight: 600;
     }
 
     /* Footer */
@@ -478,11 +538,11 @@
         font-size: 20px;
       }
 
-      .intro-page, .restitution-page, .synthese-page {
+      .intro-page, .synthesis-page {
         padding: 30px 25px;
       }
 
-      .cards-container {
+      .tables-container {
         grid-template-columns: 1fr;
       }
 
@@ -494,6 +554,17 @@
         padding: 10px 18px;
         font-size: 13px;
       }
+
+      .timer-widget {
+        bottom: 15px;
+        right: 15px;
+        min-width: 200px;
+        padding: 20px;
+      }
+
+      .timer-display {
+        font-size: 36px;
+      }
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -502,37 +573,17 @@
  </head>
  <body>
   <div class="container"><!-- Navigation -->
-   <nav class="nav-bar" id="navigation"><button class="nav-btn" data-page="cover" style="background-color: #2897d5; color: white;">🏠 Couverture</button> <button class="nav-btn" data-page="intro" style="background-color: #95c11f; color: white;">📋 Introduction</button> <button class="nav-btn" data-page="cards" style="background-color: #f39200; color: white;">🛠️ Cartes Outils</button> <button class="nav-btn" data-page="restitution" style="background-color: #a3195b; color: white;">📊 Restitution</button> <button class="nav-btn" data-page="synthese" style="background-color: #d60b52; color: white;">✨ Synthèse</button> <button class="nav-btn" id="shareBtn" style="background-color: #171718; color: white;">🔗 Créer un lien</button>
-   </nav><!-- Modal de partage -->
-   <div id="shareModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center;">
-    <div style="background: white; padding: 40px; border-radius: 20px; max-width: 700px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); max-height: 90%; overflow-y: auto;">
-     <h2 style="color: #2897d5; margin: 0 0 20px 0; font-size: 28px; font-weight: 700;">🔗 Lien d'Intégration</h2>
-     <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; border-left: 4px solid #2897d5; margin-bottom: 25px;">
-      <p style="margin: 0 0 15px 0; font-size: 15px; color: #333; font-weight: 600;">Code HTML pour intégrer ce Serious Game sur votre site :</p><textarea id="embedCode" readonly style="width: 100%; min-height: 100px; padding: 12px; border: 2px solid #dee2e6; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; background: white; resize: vertical; color: #495057; line-height: 1.5;">&lt;iframe src="https://votre-site-canva.com/embed" width="100%" height="800" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</textarea> <button id="copyEmbedBtn" style="margin-top: 12px; padding: 10px 20px; background: #2897d5; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(40, 151, 213, 0.3); transition: all 0.3s ease;"> 📋 Copier le code </button> <span id="copySuccess" style="display: none; margin-left: 12px; color: #95c11f; font-weight: 600; font-size: 14px;">✓ Copié !</span>
-     </div>
-     <div style="background: #fff3e0; padding: 20px; border-radius: 12px; border-left: 4px solid #f39200; margin-bottom: 25px;">
-      <p style="margin: 0 0 10px 0; font-size: 15px; color: #333; line-height: 1.6;"><strong>📌 Comment obtenir votre lien réel :</strong></p>
-      <ol style="margin: 10px 0 0 0; padding-left: 20px; font-size: 14px; color: #495057; line-height: 1.8;">
-       <li>Cliquez sur <strong>"Use in a design"</strong> en haut de cette page</li>
-       <li>Dans l'éditeur Canva, cliquez sur <strong>"Publish website"</strong></li>
-       <li>Copiez l'URL générée par Canva</li>
-       <li>Remplacez <code style="background: rgba(0,0,0,0.05); padding: 2px 6px; border-radius: 4px;">https://votre-site-canva.com/embed</code> dans le code ci-dessus</li>
-      </ol>
-     </div>
-     <div style="background: #f1f8e9; padding: 20px; border-radius: 12px; border-left: 4px solid #95c11f; margin-bottom: 25px;">
-      <p style="margin: 0; font-size: 15px; color: #333; line-height: 1.6;"><strong>💡 Astuce :</strong> Vous pouvez ajuster la hauteur (<code style="background: rgba(0,0,0,0.05); padding: 2px 6px; border-radius: 4px;">height="800"</code>) selon vos besoins. Recommandé : entre 600px et 1000px.</p>
-     </div><button id="closeModal" style="width: 100%; padding: 15px; background: #95c11f; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(149, 193, 31, 0.3); transition: all 0.3s ease;"> Fermer </button>
-    </div>
-   </div><!-- Section Couverture -->
+   <nav class="nav-bar" id="navigation"><img src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_224,h_60,al_c,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif" alt="Mission Locale Pays Basque" class="nav-logo" onerror="this.style.display='none';"> <button class="nav-btn" data-page="cover" style="background-color: #8B4513; color: white;">☕ Accueil</button> <button class="nav-btn" data-page="intro" style="background-color: #D2691E; color: white;">📋 Mode d'emploi</button> <button class="nav-btn" data-page="tables" style="background-color: #f39200; color: white;">🪑 Les Tables</button> <button class="nav-btn" data-page="synthesis" style="background-color: #2897d5; color: white;">📊 Synthèse</button>
+   </nav><!-- Section Couverture -->
    <div id="cover" class="section active">
     <div class="cover-page">
-     <div class="toolbox-icon">
-      🧰
+     <div class="cafe-icon">
+      ☕
      </div>
-     <h1 class="cover-title" id="coverTitle">La Boîte à Outils du Bricoleur de l'Indisciple</h1>
-     <p class="cover-subtitle" id="coverSubtitle">Construire ensemble les solutions 2026</p>
-     <div class="cover-badge" style="color: #f39200;">
-      Serious Game — Mission Locale 2026
+     <h1 class="cover-title" id="coverTitle">World Café 2026</h1>
+     <p class="cover-subtitle" id="coverSubtitle">Conversations qui comptent pour la Mission Locale</p>
+     <div class="cover-badge" style="color: #8B4513;">
+      Format World Café — 5 Tables Thématiques
      </div>
     </div>
     <div class="page-footer" id="footerCover" style="color: #171718;">
@@ -541,370 +592,389 @@
    </div><!-- Section Introduction -->
    <div id="intro" class="section">
     <div class="intro-page">
-     <h2 class="intro-title" style="color: #2897d5;">Comment ça marche ?</h2>
+     <h2 class="intro-title" style="color: #8B4513;">Le World Café : Comment ça marche ?</h2>
      <div class="intro-grid">
-      <div class="intro-card" style="border-left-color: #f39200;">
+      <div class="intro-card" style="border-left-color: #8B4513;">
        <div class="intro-card-icon">
         🎯
        </div>
-       <h3 class="intro-card-title" style="color: #f39200;">Le but du jeu</h3>
-       <p class="intro-card-text">Produire ensemble des idées <strong>simples et réalistes</strong> pour organiser, mutualiser, simplifier et innover en 2026, dans un contexte de transformation.</p>
+       <h3 class="intro-card-title" style="color: #8B4513;">Le principe</h3>
+       <p class="intro-card-text">Des conversations en <strong>petits groupes</strong> qui tournent entre différentes <strong>tables thématiques</strong>. Chaque table explore une question clé pour 2026.</p>
       </div>
-      <div class="intro-card" style="border-left-color: #95c11f;">
+      <div class="intro-card" style="border-left-color: #D2691E;">
+       <div class="intro-card-icon">
+        👥
+       </div>
+       <h3 class="intro-card-title" style="color: #D2691E;">Les rôles</h3>
+       <p class="intro-card-text"><strong>L'hôte de table</strong> reste à sa table et accueille chaque nouveau groupe. <strong>Les participants</strong> tournent entre les tables à chaque round.</p>
+      </div>
+      <div class="intro-card" style="border-left-color: #f39200;">
        <div class="intro-card-icon">
         ⏱️
        </div>
-       <h3 class="intro-card-title" style="color: #95c11f;">Durée</h3>
-       <p class="intro-card-text" id="introDuration"><strong>1h</strong> de travail collaboratif en groupes, avec un temps de restitution collective pour partager les pistes identifiées.</p>
+       <h3 class="intro-card-title" style="color: #f39200;">La durée</h3>
+       <p class="intro-card-text" id="introDuration"><strong>3 rounds de 20 minutes</strong> par table. Temps total : environ <strong>1h15</strong> + restitution collective de 30 minutes.</p>
       </div>
       <div class="intro-card" style="border-left-color: #2897d5;">
        <div class="intro-card-icon">
-        🎲
-       </div>
-       <h3 class="intro-card-title" style="color: #2897d5;">Déroulé</h3>
-       <p class="intro-card-text"><strong>Tirage</strong> d'une carte-outil → <strong>Réflexion</strong> en groupe sur le scénario → <strong>Restitution</strong> des pistes d'action concrètes.</p>
-      </div>
-      <div class="intro-card" style="border-left-color: #a3195b;">
-       <div class="intro-card-icon">
         💡
        </div>
-       <h3 class="intro-card-title" style="color: #a3195b;">La règle d'or</h3>
-       <p class="intro-card-text">"<em>Chacun contribue, personne ne représente les autres, toutes les idées sont bienvenues.</em>" Un espace bienveillant pour construire ensemble.</p>
+       <h3 class="intro-card-title" style="color: #2897d5;">L'esprit World Café</h3>
+       <p class="intro-card-text"><em>"Parler avec intention, écouter pour comprendre, relier les idées."</em> Bienveillance, curiosité et co-construction.</p>
       </div>
+     </div>
+     <div class="rotation-schedule">
+      <div class="rotation-title"><span>🔄</span> <span>Planning des rotations</span>
+      </div>
+      <div class="rotation-grid">
+       <div class="rotation-step">
+        <div class="rotation-time">
+         20'
+        </div>
+        <div class="rotation-label">
+         Round 1
+        </div>
+       </div>
+       <div class="rotation-step">
+        <div class="rotation-time">
+         🔔
+        </div>
+        <div class="rotation-label">
+         Rotation
+        </div>
+       </div>
+       <div class="rotation-step">
+        <div class="rotation-time">
+         20'
+        </div>
+        <div class="rotation-label">
+         Round 2
+        </div>
+       </div>
+       <div class="rotation-step">
+        <div class="rotation-time">
+         🔔
+        </div>
+        <div class="rotation-label">
+         Rotation
+        </div>
+       </div>
+       <div class="rotation-step">
+        <div class="rotation-time">
+         20'
+        </div>
+        <div class="rotation-label">
+         Round 3
+        </div>
+       </div>
+       <div class="rotation-step">
+        <div class="rotation-time">
+         📊
+        </div>
+        <div class="rotation-label">
+         Synthèse
+        </div>
+       </div>
+      </div>
+      <p style="margin-top: 20px; font-size: 14px; color: #666; text-align: center;"><strong>💡 Astuce :</strong> L'hôte de table fait un résumé rapide des idées du groupe précédent avant de démarrer la nouvelle conversation.</p>
      </div>
     </div>
     <div class="page-footer" id="footerIntro" style="color: #171718;">
      Mission Locale Pays Basque — 2026
     </div>
-   </div><!-- Section Cartes Outils -->
-   <div id="cards" class="section">
-    <div class="cards-container"><!-- Carte 1 : Accueil et Premier Entretien -->
-     <div class="tool-card" style="border-color: #f39200;">
-      <div class="card-header" style="border-bottom-color: #f39200;"><span class="card-icon">🚪</span>
-       <h3 class="card-title" style="color: #f39200;">L'Accueil — Premier contact réussi</h3>
+   </div><!-- Section Tables -->
+   <div id="tables" class="section">
+    <div class="tables-container"><!-- Table 1 : Accueil -->
+     <div class="table-card" style="border-color: #f39200;">
+      <div class="table-header" style="border-bottom-color: #f39200;">
+       <div class="table-number" style="color: #f39200; border: 3px solid #f39200;">
+        1
+       </div><span class="table-icon">🚪</span>
+       <h3 class="table-title" style="color: #f39200;">Table Accueil</h3>
       </div>
-      <div class="card-body">
-       <div class="card-scenario" style="border-left-color: #f39200;"><strong>Atelier : Accueil et premier entretien</strong><br><strong>Scénario 2026 :</strong> Les jeunes arrivent avec des attentes variées, certains via prescripteurs, d'autres en autonomie. Comment harmoniser nos pratiques d'accueil tout en simplifiant la lourdeur administrative du premier entretien ?
-       </div>
-       <div class="card-mission"><strong>Mission :</strong> Proposer 3 pistes pour améliorer l'accueil et fluidifier le premier entretien.
-       </div>
-       <div class="card-questions">
-        <div class="card-question" style="color: #f39200;">
-         Comment simplifier les procédures d'inscription sans perdre les infos essentielles ?
-        </div>
-        <div class="card-question" style="color: #f39200;">
-         Quels outils communs pour harmoniser les pratiques entre conseillers ?
-        </div>
-        <div class="card-question" style="color: #f39200;">
-         Comment améliorer la communication avec les partenaires prescripteurs ?
+      <div class="table-body">
+       <div class="host-section"><span class="host-icon">👤</span>
+        <div class="host-text"><strong>Hôte de table :</strong> Accueille les groupes, synthétise les idées précédentes, encourage la participation
         </div>
        </div>
-      </div>
-      <div class="card-footer">
-       <div class="card-bonus"><span class="bonus-badge">⭐ Bonus</span> <span>+1 jeton "Efficacité" si ça réduit le temps administratif</span>
+       <div class="table-question" style="border-left-color: #f39200; color: #f39200;">
+        Comment harmoniser l'accueil sur nos 30 sites tout en préservant notre adaptabilité et notre proximité ?
        </div>
-      </div>
-     </div><!-- Carte 2 : Diagnostic et Plan d'Action -->
-     <div class="tool-card" style="border-color: #95c11f;">
-      <div class="card-header" style="border-bottom-color: #95c11f;"><span class="card-icon">🎯</span>
-       <h3 class="card-title" style="color: #95c11f;">Le Diagnostic — Évaluer et construire ensemble</h3>
-      </div>
-      <div class="card-body">
-       <div class="card-scenario" style="border-left-color: #95c11f;"><strong>Atelier : Diagnostic, compétences et plan d'action</strong><br><strong>Scénario 2026 :</strong> Chaque conseiller a sa méthode pour faire le diagnostic et construire le plan d'action. Comment harmoniser ces pratiques pour gagner en efficacité tout en maintenant la qualité et la cohésion dans le travail d'équipe ?
-       </div>
-       <div class="card-mission"><strong>Mission :</strong> Identifier 3 leviers pour clarifier et harmoniser le diagnostic.
-       </div>
-       <div class="card-questions">
-        <div class="card-question" style="color: #95c11f;">
-         Comment créer un socle commun d'évaluation des compétences ?
+       <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px;">
+        <div style="font-weight: 700; margin-bottom: 10px; font-size: 15px;">
+         💬 Questions pour guider la conversation :
         </div>
-        <div class="card-question" style="color: #95c11f;">
-         Quels outils partagés pour faciliter la co-construction du plan d'action ?
-        </div>
-        <div class="card-question" style="color: #95c11f;">
-         Comment faire équipe sur les situations complexes ?
-        </div>
+        <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8;">
+         <li>Quel socle commun minimal d'accueil pourrait fonctionner partout ?</li>
+         <li>Comment clarifier nos consignes sans perdre en réactivité ?</li>
+         <li>Quels canaux de communication privilégier pour éviter la surcharge ?</li>
+        </ul>
        </div>
       </div>
-      <div class="card-footer">
-       <div class="card-bonus"><span class="bonus-badge">⭐ Bonus</span> <span>+1 badge "Cohésion" si ça renforce le travail collectif</span>
+     </div><!-- Table 2 : Diagnostic -->
+     <div class="table-card" style="border-color: #95c11f;">
+      <div class="table-header" style="border-bottom-color: #95c11f;">
+       <div class="table-number" style="color: #95c11f; border: 3px solid #95c11f;">
+        2
+       </div><span class="table-icon">🎯</span>
+       <h3 class="table-title" style="color: #95c11f;">Table Diagnostic</h3>
+      </div>
+      <div class="table-body">
+       <div class="host-section"><span class="host-icon">👤</span>
+        <div class="host-text"><strong>Hôte de table :</strong> Accueille les groupes, synthétise les idées précédentes, encourage la participation
+        </div>
+       </div>
+       <div class="table-question" style="border-left-color: #95c11f; color: #95c11f;">
+        Comment réduire la charge des diagnostics multiples tout en créant un référentiel commun qui renforce notre cohésion ?
+       </div>
+       <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px;">
+        <div style="font-weight: 700; margin-bottom: 10px; font-size: 15px;">
+         💬 Questions pour guider la conversation :
+        </div>
+        <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8;">
+         <li>Comment simplifier sans perdre en qualité d'accompagnement ?</li>
+         <li>Quel référentiel commun pourrait harmoniser nos pratiques ?</li>
+         <li>Comment favoriser les échanges de pratiques entre collègues ?</li>
+        </ul>
        </div>
       </div>
-     </div><!-- Carte 3 : Orientation et Mobilisation -->
-     <div class="tool-card" style="border-color: #2897d5;">
-      <div class="card-header" style="border-bottom-color: #2897d5;"><span class="card-icon">🧭</span>
-       <h3 class="card-title" style="color: #2897d5;">L'Orientation — Mobiliser les bonnes ressources</h3>
+     </div><!-- Table 3 : Orientation -->
+     <div class="table-card" style="border-color: #2897d5;">
+      <div class="table-header" style="border-bottom-color: #2897d5;">
+       <div class="table-number" style="color: #2897d5; border: 3px solid #2897d5;">
+        3
+       </div><span class="table-icon">🧭</span>
+       <h3 class="table-title" style="color: #2897d5;">Table Orientation</h3>
       </div>
-      <div class="card-body">
-       <div class="card-scenario" style="border-left-color: #2897d5;"><strong>Atelier : Orientation et mobilisation sur dispositifs</strong><br><strong>Scénario 2026 :</strong> Multitude de dispositifs individuels et collectifs disponibles, mais difficile de s'y retrouver. Comment améliorer la communication interne sur ces ressources et simplifier l'orientation pour gagner du temps ?
-       </div>
-       <div class="card-mission"><strong>Mission :</strong> Proposer 3 solutions pour fluidifier l'orientation.
-       </div>
-       <div class="card-questions">
-        <div class="card-question" style="color: #2897d5;">
-         Comment créer une cartographie claire et actualisée des dispositifs ?
-        </div>
-        <div class="card-question" style="color: #2897d5;">
-         Quels outils pour partager les infos entre conseillers efficacement ?
-        </div>
-        <div class="card-question" style="color: #2897d5;">
-         Comment simplifier les procédures de mobilisation des dispositifs collectifs ?
+      <div class="table-body">
+       <div class="host-section"><span class="host-icon">👤</span>
+        <div class="host-text"><strong>Hôte de table :</strong> Accueille les groupes, synthétise les idées précédentes, encourage la participation
         </div>
        </div>
-      </div>
-      <div class="card-footer">
-       <div class="card-bonus"><span class="bonus-badge">⭐ Bonus</span> <span>+1 jeton "Communication" si ça améliore la circulation d'infos</span>
+       <div class="table-question" style="border-left-color: #2897d5; color: #2897d5;">
+        Comment créer une feuille de route claire des dispositifs avec des positionnements stratégiques partagés par tous ?
        </div>
-      </div>
-     </div><!-- Carte 4 : Scie Fine -->
-     <div class="tool-card" style="border-color: #d60b52;">
-      <div class="card-header" style="border-bottom-color: #d60b52;"><span class="card-icon">🔓</span>
-       <h3 class="card-title" style="color: #d60b52;">Les Freins — Lever les obstacles périphériques</h3>
-      </div>
-      <div class="card-body">
-       <div class="card-scenario" style="border-left-color: #d60b52;"><strong>Atelier : Levée des freins périphériques</strong><br><strong>Scénario 2026 :</strong> Mobilité, logement, santé, administratif... Les freins périphériques sont nombreux et complexifient l'accompagnement. Comment clarifier les procédures et faire équipe pour mieux orienter les jeunes ?
-       </div>
-       <div class="card-mission"><strong>Mission :</strong> Identifier 3 pistes pour lever les freins plus efficacement.
-       </div>
-       <div class="card-questions">
-        <div class="card-question" style="color: #d60b52;">
-         Comment simplifier les procédures de demande d'aides (mobilité, logement...) ?
+       <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px;">
+        <div style="font-weight: 700; margin-bottom: 10px; font-size: 15px;">
+         💬 Questions pour guider la conversation :
         </div>
-        <div class="card-question" style="color: #d60b52;">
-         Quels partenaires mobiliser pour alléger la charge administrative ?
-        </div>
-        <div class="card-question" style="color: #d60b52;">
-         Comment améliorer la communication entre conseillers sur les solutions trouvées ?
-        </div>
+        <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8;">
+         <li>Quelle forme pourrait prendre cette feuille de route ?</li>
+         <li>Comment centraliser et actualiser les infos sur les dispositifs ?</li>
+         <li>Comment traduire les orientations stratégiques en actions terrain ?</li>
+        </ul>
        </div>
       </div>
-      <div class="card-footer">
-       <div class="card-bonus"><span class="bonus-badge">⭐ Bonus</span> <span>+1 jeton "Simplification" si ça réduit les démarches pour le jeune</span>
+     </div><!-- Table 4 : Freins -->
+     <div class="table-card" style="border-color: #d60b52;">
+      <div class="table-header" style="border-bottom-color: #d60b52;">
+       <div class="table-number" style="color: #d60b52; border: 3px solid #d60b52;">
+        4
+       </div><span class="table-icon">🔓</span>
+       <h3 class="table-title" style="color: #d60b52;">Table Levée des Freins</h3>
+      </div>
+      <div class="table-body">
+       <div class="host-section"><span class="host-icon">👤</span>
+        <div class="host-text"><strong>Hôte de table :</strong> Accueille les groupes, synthétise les idées précédentes, encourage la participation
+        </div>
+       </div>
+       <div class="table-question" style="border-left-color: #d60b52; color: #d60b52;">
+        Quelles lourdeurs administratives concrètes peut-on éliminer immédiatement pour retrouver du temps pour accompagner ?
+       </div>
+       <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px;">
+        <div style="font-weight: 700; margin-bottom: 10px; font-size: 15px;">
+         💬 Questions pour guider la conversation :
+        </div>
+        <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8;">
+         <li>Quelles doubles saisies supprimer en priorité ?</li>
+         <li>Comment réduire drastiquement le temps d'ouverture d'un CEJ ?</li>
+         <li>Quels actes forts et concrets pour soutenir les équipes maintenant ?</li>
+        </ul>
        </div>
       </div>
-     </div><!-- Carte 5 : Mobilisation Partenariale -->
-     <div class="tool-card" style="border-color: #a3195b;">
-      <div class="card-header" style="border-bottom-color: #a3195b;"><span class="card-icon">🤝</span>
-       <h3 class="card-title" style="color: #a3195b;">Le Partenariat — Travailler en réseau efficacement</h3>
+     </div><!-- Table 5 : Partenariat -->
+     <div class="table-card" style="border-color: #a3195b;">
+      <div class="table-header" style="border-bottom-color: #a3195b;">
+       <div class="table-number" style="color: #a3195b; border: 3px solid #a3195b;">
+        5
+       </div><span class="table-icon">🤝</span>
+       <h3 class="table-title" style="color: #a3195b;">Table Partenariat</h3>
       </div>
-      <div class="card-body">
-       <div class="card-scenario" style="border-left-color: #a3195b;"><strong>Atelier : Mobilisation partenariale</strong><br><strong>Scénario 2026 :</strong> De nombreux partenaires à coordonner (Pôle Emploi, entreprises, associations, CFA...). Comment améliorer la communication avec eux et clarifier nos rôles respectifs pour faire équipe efficacement ?
-       </div>
-       <div class="card-mission"><strong>Mission :</strong> Proposer 3 leviers pour optimiser le travail partenarial.
-       </div>
-       <div class="card-questions">
-        <div class="card-question" style="color: #a3195b;">
-         Comment simplifier la communication avec les partenaires clés ?
-        </div>
-        <div class="card-question" style="color: #a3195b;">
-         Quels outils pour clarifier les rôles et éviter les doublons ?
-        </div>
-        <div class="card-question" style="color: #a3195b;">
-         Comment créer des synergies territoriales pour gagner en efficacité ?
+      <div class="table-body">
+       <div class="host-section"><span class="host-icon">👤</span>
+        <div class="host-text"><strong>Hôte de table :</strong> Accueille les groupes, synthétise les idées précédentes, encourage la participation
         </div>
        </div>
-      </div>
-      <div class="card-footer">
-       <div class="card-bonus"><span class="bonus-badge">⭐ Bonus</span> <span>+1 badge "Coopération" si ça implique plusieurs partenaires</span>
+       <div class="table-question" style="border-left-color: #a3195b; color: #a3195b;">
+        Comment transformer notre besoin de cohésion, fun et solidarité en actions partenariales concrètes ?
        </div>
-      </div>
-     </div>
-    </div>
-    <div class="page-footer" id="footerCards" style="color: #171718;">
-     Mission Locale Pays Basque — 2026
-    </div>
-   </div><!-- Section Restitution -->
-   <div id="restitution" class="section">
-    <div class="restitution-page">
-     <h2 class="restitution-title" style="color: #a3195b;">Grille de Restitution Gamifiée</h2>
-     <p style="text-align: center; font-size: 16px; margin-bottom: 30px; color: #495057;">Chaque groupe note ses idées et cumule des points : <strong>1 pt</strong> = idée simple | <strong>2 pts</strong> = idée testable | <strong>3 pts</strong> = idée activable en janvier 2026</p>
-     <div class="restitution-grid"><!-- Groupe 1 -->
-      <div class="restitution-group" style="border-left-color: #f39200;">
-       <div class="group-header">
-        <h3 class="group-title" style="color: #f39200;">🛠️ Groupe 1</h3>
-        <div class="progress-bar-container">
-         <div class="progress-bar" id="progress1" style="width: 0%;">
-          0/3
-         </div>
+       <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-top: 15px;">
+        <div style="font-weight: 700; margin-bottom: 10px; font-size: 15px;">
+         💬 Questions pour guider la conversation :
         </div>
-       </div><textarea class="idea-input" id="ideas1" placeholder="Notez vos 3 idées ici..." oninput="updateProgress(1)"></textarea>
-       <div class="score-display">
-        <div class="score-badge" style="background: #e3f2fd; color: #2897d5;"><span>💡</span> <span id="score1-simple">0 idée simple</span>
-        </div>
-        <div class="score-badge" style="background: #f1f8e9; color: #95c11f;"><span>🧪</span> <span id="score1-testable">0 idée testable</span>
-        </div>
-        <div class="score-badge" style="background: #fff3e0; color: #f39200;"><span>🚀</span> <span id="score1-activable">0 idée activable</span>
-        </div>
-       </div>
-      </div><!-- Groupe 2 -->
-      <div class="restitution-group" style="border-left-color: #95c11f;">
-       <div class="group-header">
-        <h3 class="group-title" style="color: #95c11f;">🛠️ Groupe 2</h3>
-        <div class="progress-bar-container">
-         <div class="progress-bar" id="progress2" style="width: 0%;">
-          0/3
-         </div>
-        </div>
-       </div><textarea class="idea-input" id="ideas2" placeholder="Notez vos 3 idées ici..." oninput="updateProgress(2)"></textarea>
-       <div class="score-display">
-        <div class="score-badge" style="background: #e3f2fd; color: #2897d5;"><span>💡</span> <span id="score2-simple">0 idée simple</span>
-        </div>
-        <div class="score-badge" style="background: #f1f8e9; color: #95c11f;"><span>🧪</span> <span id="score2-testable">0 idée testable</span>
-        </div>
-        <div class="score-badge" style="background: #fff3e0; color: #f39200;"><span>🚀</span> <span id="score2-activable">0 idée activable</span>
-        </div>
-       </div>
-      </div><!-- Groupe 3 -->
-      <div class="restitution-group" style="border-left-color: #2897d5;">
-       <div class="group-header">
-        <h3 class="group-title" style="color: #2897d5;">🛠️ Groupe 3</h3>
-        <div class="progress-bar-container">
-         <div class="progress-bar" id="progress3" style="width: 0%;">
-          0/3
-         </div>
-        </div>
-       </div><textarea class="idea-input" id="ideas3" placeholder="Notez vos 3 idées ici..." oninput="updateProgress(3)"></textarea>
-       <div class="score-display">
-        <div class="score-badge" style="background: #e3f2fd; color: #2897d5;"><span>💡</span> <span id="score3-simple">0 idée simple</span>
-        </div>
-        <div class="score-badge" style="background: #f1f8e9; color: #95c11f;"><span>🧪</span> <span id="score3-testable">0 idée testable</span>
-        </div>
-        <div class="score-badge" style="background: #fff3e0; color: #f39200;"><span>���</span> <span id="score3-activable">0 idée activable</span>
-        </div>
-       </div>
-      </div><!-- Groupe 4 -->
-      <div class="restitution-group" style="border-left-color: #d60b52;">
-       <div class="group-header">
-        <h3 class="group-title" style="color: #d60b52;">🛠️ Groupe 4</h3>
-        <div class="progress-bar-container">
-         <div class="progress-bar" id="progress4" style="width: 0%;">
-          0/3
-         </div>
-        </div>
-       </div><textarea class="idea-input" id="ideas4" placeholder="Notez vos 3 idées ici..." oninput="updateProgress(4)"></textarea>
-       <div class="score-display">
-        <div class="score-badge" style="background: #e3f2fd; color: #2897d5;"><span>💡</span> <span id="score4-simple">0 idée simple</span>
-        </div>
-        <div class="score-badge" style="background: #f1f8e9; color: #95c11f;"><span>🧪</span> <span id="score4-testable">0 idée testable</span>
-        </div>
-        <div class="score-badge" style="background: #fff3e0; color: #f39200;"><span>🚀</span> <span id="score4-activable">0 idée activable</span>
-        </div>
+        <ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.8;">
+         <li>Quels ateliers collectifs co-animer avec les partenaires ?</li>
+         <li>Comment valoriser notre diversité auprès du réseau ?</li>
+         <li>Quels moments conviviaux créer pour renforcer les liens ?</li>
+        </ul>
        </div>
       </div>
      </div>
     </div>
-    <div class="page-footer" id="footerRestitution" style="color: #171718;">
+    <div class="page-footer" id="footerTables" style="color: #171718;">
      Mission Locale Pays Basque — 2026
     </div>
    </div><!-- Section Synthèse -->
-   <div id="synthese" class="section">
-    <div class="synthese-page">
-     <h2 class="synthese-title" style="color: #d60b52;">Synthèse Collective — Les 4 piliers 2026</h2>
-     <p style="text-align: center; font-size: 16px; margin-bottom: 30px; color: #495057;">Toutes les idées des groupes sont triées ici pour construire notre feuille de route commune</p>
-     <div class="synthese-grid"><!-- Colonne Simplifier -->
-      <div class="synthese-column" style="border-top-color: #f39200;">
-       <div class="column-header"><span class="column-icon">✂️</span>
-        <h3 class="column-title" style="color: #f39200;">Simplifier</h3>
+   <div id="synthesis" class="section">
+    <div class="synthesis-page">
+     <h2 class="synthesis-title" style="color: #8B4513;">Tableau de Synthèse — Récolte des Idées</h2>
+     <p style="text-align: center; font-size: 16px; margin-bottom: 30px; color: #495057;">Les hôtes de table notent ici les idées émergées à chaque round pour la restitution finale</p>
+     <div class="synthesis-grid"><!-- Table 1 Synthèse -->
+      <div class="synthesis-table" style="border-left-color: #f39200;">
+       <div class="synthesis-table-header"><span class="synthesis-table-icon">🚪</span>
+        <h3 class="synthesis-table-title" style="color: #f39200;">Table 1 : Accueil</h3>
        </div>
-       <div class="column-content">
-        <p><strong>Objectif :</strong> Alléger les processus, supprimer le superflu, automatiser ce qui peut l'être.</p>
-        <p style="margin-top: 15px;"><em>Les idées des groupes qui simplifient le quotidien seront listées ici lors de la restitution collective.</em></p>
-        <ul style="margin-top: 15px; padding-left: 20px;">
-         <li>Réduire les doublons administratifs</li>
-         <li>Standardiser les procédures courantes</li>
-         <li>Digitaliser les suivis répétitifs</li>
-        </ul>
+       <div class="synthesis-content">
+        <div class="round-section" style="border-left-color: #95c11f;">
+         <div class="round-title" style="color: #95c11f;"><span>1️⃣</span> <span>Round 1 (0-20 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du premier groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #2897d5;">
+         <div class="round-title" style="color: #2897d5;"><span>2️⃣</span> <span>Round 2 (20-40 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du deuxième groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #a3195b;">
+         <div class="round-title" style="color: #a3195b;"><span>3️⃣</span> <span>Round 3 (40-60 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du troisième groupe..."></textarea>
+        </div>
        </div>
-      </div><!-- Colonne Réorganiser -->
-      <div class="synthese-column" style="border-top-color: #95c11f;">
-       <div class="column-header"><span class="column-icon">🔄</span>
-        <h3 class="column-title" style="color: #95c11f;">Réorganiser</h3>
+      </div><!-- Table 2 Synthèse -->
+      <div class="synthesis-table" style="border-left-color: #95c11f;">
+       <div class="synthesis-table-header"><span class="synthesis-table-icon">🎯</span>
+        <h3 class="synthesis-table-title" style="color: #95c11f;">Table 2 : Diagnostic</h3>
        </div>
-       <div class="column-content">
-        <p><strong>Objectif :</strong> Repenser les rôles, ajuster les équipes, améliorer la circulation de l'information.</p>
-        <p style="margin-top: 15px;"><em>Les idées des groupes qui réorganisent les pratiques seront listées ici lors de la restitution collective.</em></p>
-        <ul style="margin-top: 15px; padding-left: 20px;">
-         <li>Clarifier les missions de chacun</li>
-         <li>Optimiser les circuits de décision</li>
-         <li>Renforcer la transversalité</li>
-        </ul>
+       <div class="synthesis-content">
+        <div class="round-section" style="border-left-color: #95c11f;">
+         <div class="round-title" style="color: #95c11f;"><span>1️⃣</span> <span>Round 1 (0-20 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du premier groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #2897d5;">
+         <div class="round-title" style="color: #2897d5;"><span>2️⃣</span> <span>Round 2 (20-40 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du deuxième groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #a3195b;">
+         <div class="round-title" style="color: #a3195b;"><span>3️⃣</span> <span>Round 3 (40-60 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du troisième groupe..."></textarea>
+        </div>
        </div>
-      </div><!-- Colonne Mutualiser -->
-      <div class="synthese-column" style="border-top-color: #2897d5;">
-       <div class="column-header"><span class="column-icon">🤝</span>
-        <h3 class="column-title" style="color: #2897d5;">Mutualiser</h3>
+      </div><!-- Table 3 Synthèse -->
+      <div class="synthesis-table" style="border-left-color: #2897d5;">
+       <div class="synthesis-table-header"><span class="synthesis-table-icon">🧭</span>
+        <h3 class="synthesis-table-title" style="color: #2897d5;">Table 3 : Orientation</h3>
        </div>
-       <div class="column-content">
-        <p><strong>Objectif :</strong> Partager les ressources, créer des synergies territoriales, coopérer avec les partenaires.</p>
-        <p style="margin-top: 15px;"><em>Les idées des groupes qui mutualisent les moyens seront listées ici lors de la restitution collective.</em></p>
-        <ul style="margin-top: 15px; padding-left: 20px;">
-         <li>Partager locaux et équipements</li>
-         <li>Co-construire avec les partenaires</li>
-         <li>Harmoniser entre sites/antennes</li>
-        </ul>
+       <div class="synthesis-content">
+        <div class="round-section" style="border-left-color: #95c11f;">
+         <div class="round-title" style="color: #95c11f;"><span>1️⃣</span> <span>Round 1 (0-20 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du premier groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #2897d5;">
+         <div class="round-title" style="color: #2897d5;"><span>2️⃣</span> <span>Round 2 (20-40 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du deuxième groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #a3195b;">
+         <div class="round-title" style="color: #a3195b;"><span>3️⃣</span> <span>Round 3 (40-60 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du troisième groupe..."></textarea>
+        </div>
        </div>
-      </div><!-- Colonne Innover -->
-      <div class="synthese-column" style="border-top-color: #a3195b;">
-       <div class="column-header"><span class="column-icon">💡</span>
-        <h3 class="column-title" style="color: #a3195b;">Innover</h3>
+      </div><!-- Table 4 Synthèse -->
+      <div class="synthesis-table" style="border-left-color: #d60b52;">
+       <div class="synthesis-table-header"><span class="synthesis-table-icon">🔓</span>
+        <h3 class="synthesis-table-title" style="color: #d60b52;">Table 4 : Levée des Freins</h3>
        </div>
-       <div class="column-content">
-        <p><strong>Objectif :</strong> Tester de nouvelles approches, expérimenter des formats différents, oser le changement.</p>
-        <p style="margin-top: 15px;"><em>Les idées des groupes qui innovent dans les pratiques seront listées ici lors de la restitution collective.</em></p>
-        <ul style="margin-top: 15px; padding-left: 20px;">
-         <li>Expérimenter de nouveaux formats</li>
-         <li>Utiliser le numérique autrement</li>
-         <li>Créer des alliances inédites</li>
-        </ul>
+       <div class="synthesis-content">
+        <div class="round-section" style="border-left-color: #95c11f;">
+         <div class="round-title" style="color: #95c11f;"><span>1️⃣</span> <span>Round 1 (0-20 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du premier groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #2897d5;">
+         <div class="round-title" style="color: #2897d5;"><span>2️⃣</span> <span>Round 2 (20-40 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du deuxième groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #a3195b;">
+         <div class="round-title" style="color: #a3195b;"><span>3️⃣</span> <span>Round 3 (40-60 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du troisième groupe..."></textarea>
+        </div>
+       </div>
+      </div><!-- Table 5 Synthèse -->
+      <div class="synthesis-table" style="border-left-color: #a3195b;">
+       <div class="synthesis-table-header"><span class="synthesis-table-icon">🤝</span>
+        <h3 class="synthesis-table-title" style="color: #a3195b;">Table 5 : Partenariat</h3>
+       </div>
+       <div class="synthesis-content">
+        <div class="round-section" style="border-left-color: #95c11f;">
+         <div class="round-title" style="color: #95c11f;"><span>1️⃣</span> <span>Round 1 (0-20 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du premier groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #2897d5;">
+         <div class="round-title" style="color: #2897d5;"><span>2️⃣</span> <span>Round 2 (20-40 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du deuxième groupe..."></textarea>
+        </div>
+        <div class="round-section" style="border-left-color: #a3195b;">
+         <div class="round-title" style="color: #a3195b;"><span>3️⃣</span> <span>Round 3 (40-60 min)</span>
+         </div><textarea class="ideas-textarea" placeholder="Idées du troisième groupe..."></textarea>
+        </div>
        </div>
       </div>
      </div>
     </div>
-    <div class="page-footer" id="footerSynthese" style="color: #171718;">
+    <div class="page-footer" id="footerSynthesis" style="color: #171718;">
      Mission Locale Pays Basque — 2026
+    </div>
+   </div><!-- Timer Widget -->
+   <div class="timer-widget" id="timerWidget">
+    <div class="timer-title">
+     ⏱️ Chronomètre World Café
+    </div>
+    <div class="timer-display" id="timerDisplay">
+     20:00
+    </div>
+    <div class="timer-round" id="timerRound">
+     Round 1 / 3
+    </div>
+    <div class="timer-controls"><button class="timer-btn start" id="startBtn">▶️ Start</button> <button class="timer-btn pause" id="pauseBtn">⏸️ Pause</button> <button class="timer-btn reset" id="resetBtn">🔄 Reset</button>
     </div>
    </div>
   </div>
   <script>
     const defaultConfig = {
-      main_title: "La Boîte à Outils du Bricoleur de l'Indisciple",
-      subtitle: "Construire ensemble les solutions 2026",
-      intro_duration: "1h",
+      main_title: "World Café 2026",
+      subtitle: "Conversations qui comptent pour la Mission Locale",
+      round_duration: "20 minutes",
       footer_text: "Mission Locale Pays Basque — 2026",
-      primary_color: "#2897d5",
-      secondary_color: "#f39200",
+      primary_color: "#8B4513",
+      secondary_color: "#D2691E",
       text_color: "#171718",
-      accent_color: "#95c11f",
-      highlight_color: "#d60b52"
+      accent_color: "#f39200",
+      highlight_color: "#2897d5"
     };
 
     async function onConfigChange(config) {
       const mainTitle = config.main_title || defaultConfig.main_title;
       const subtitle = config.subtitle || defaultConfig.subtitle;
-      const introDuration = config.intro_duration || defaultConfig.intro_duration;
+      const roundDuration = config.round_duration || defaultConfig.round_duration;
       const footerText = config.footer_text || defaultConfig.footer_text;
-      const primaryColor = config.primary_color || defaultConfig.primary_color;
-      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const accentColor = config.accent_color || defaultConfig.accent_color;
-      const highlightColor = config.highlight_color || defaultConfig.highlight_color;
 
       document.getElementById('coverTitle').textContent = mainTitle;
       document.getElementById('coverSubtitle').textContent = subtitle;
-      document.getElementById('introDuration').innerHTML = `<strong>${introDuration}</strong> de travail collaboratif en groupes, avec un temps de restitution collective pour partager les pistes identifiées.`;
+      document.getElementById('introDuration').innerHTML = `<strong>3 rounds de ${roundDuration}</strong> par table. Temps total : environ <strong>1h15</strong> + restitution collective de 30 minutes.`;
       
-      const footers = ['footerCover', 'footerIntro', 'footerCards', 'footerRestitution', 'footerSynthese'];
+      const footers = ['footerCover', 'footerIntro', 'footerTables', 'footerSynthesis'];
       footers.forEach(id => {
         const footer = document.getElementById(id);
         if (footer) {
           footer.textContent = footerText;
-          footer.style.color = textColor;
+          footer.style.color = config.text_color || defaultConfig.text_color;
         }
-      });
-
-      document.querySelectorAll('.nav-btn').forEach((btn, index) => {
-        const colors = [primaryColor, accentColor, secondaryColor, highlightColor, '#d60b52'];
-        btn.style.backgroundColor = colors[index % colors.length];
       });
     }
 
@@ -957,13 +1027,13 @@
         mapToEditPanelValues: (config) => new Map([
           ["main_title", config.main_title || defaultConfig.main_title],
           ["subtitle", config.subtitle || defaultConfig.subtitle],
-          ["intro_duration", config.intro_duration || defaultConfig.intro_duration],
+          ["round_duration", config.round_duration || defaultConfig.round_duration],
           ["footer_text", config.footer_text || defaultConfig.footer_text]
         ])
       });
     }
 
-    // Navigation entre les pages
+    // Navigation
     const navButtons = document.querySelectorAll('.nav-btn');
     const sections = document.querySelectorAll('.section');
 
@@ -976,69 +1046,76 @@
         });
         
         document.getElementById(targetPage).classList.add('active');
-        
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
 
-    // Gestion de la progression
-    function updateProgress(groupNum) {
-      const textarea = document.getElementById(`ideas${groupNum}`);
-      const text = textarea.value.trim();
-      const lines = text.split('\n').filter(line => line.trim().length > 0);
-      const count = Math.min(lines.length, 3);
-      const percentage = (count / 3) * 100;
+    // Timer functionality
+    let timerInterval;
+    let timeRemaining = 20 * 60; // 20 minutes in seconds
+    let currentRound = 1;
+    let isRunning = false;
+
+    const timerDisplay = document.getElementById('timerDisplay');
+    const timerRound = document.getElementById('timerRound');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+      timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
       
-      const progressBar = document.getElementById(`progress${groupNum}`);
-      progressBar.style.width = `${percentage}%`;
-      progressBar.textContent = `${count}/3`;
-      
-      document.getElementById(`score${groupNum}-simple`).textContent = `${Math.min(count, 1)} idée simple`;
-      document.getElementById(`score${groupNum}-testable`).textContent = `${Math.min(Math.max(count - 1, 0), 1)} idée testable`;
-      document.getElementById(`score${groupNum}-activable`).textContent = `${Math.max(count - 2, 0)} idée activable`;
+      timerDisplay.classList.remove('warning', 'alert');
+      if (timeRemaining <= 60) {
+        timerDisplay.classList.add('alert');
+      } else if (timeRemaining <= 300) {
+        timerDisplay.classList.add('warning');
+      }
     }
 
-    // Gestion du modal de partage
-    const shareBtn = document.getElementById('shareBtn');
-    const shareModal = document.getElementById('shareModal');
-    const closeModal = document.getElementById('closeModal');
-    const copyEmbedBtn = document.getElementById('copyEmbedBtn');
-    const embedCode = document.getElementById('embedCode');
-    const copySuccess = document.getElementById('copySuccess');
-
-    shareBtn.addEventListener('click', () => {
-      shareModal.style.display = 'flex';
-    });
-
-    closeModal.addEventListener('click', () => {
-      shareModal.style.display = 'none';
-      copySuccess.style.display = 'none';
-    });
-
-    shareModal.addEventListener('click', (e) => {
-      if (e.target === shareModal) {
-        shareModal.style.display = 'none';
-        copySuccess.style.display = 'none';
+    function startTimer() {
+      if (!isRunning) {
+        isRunning = true;
+        timerInterval = setInterval(() => {
+          if (timeRemaining > 0) {
+            timeRemaining--;
+            updateTimerDisplay();
+          } else {
+            pauseTimer();
+            // Play sound or notification would go here
+            if (currentRound < 3) {
+              currentRound++;
+              timerRound.textContent = `Round ${currentRound} / 3`;
+              timeRemaining = 20 * 60;
+              updateTimerDisplay();
+            } else {
+              timerRound.textContent = '🎉 Terminé !';
+            }
+          }
+        }, 1000);
       }
-    });
+    }
 
-    copyEmbedBtn.addEventListener('click', () => {
-      embedCode.select();
-      embedCode.setSelectionRange(0, 99999);
-      
-      navigator.clipboard.writeText(embedCode.value).then(() => {
-        copySuccess.style.display = 'inline';
-        setTimeout(() => {
-          copySuccess.style.display = 'none';
-        }, 3000);
-      }).catch(() => {
-        document.execCommand('copy');
-        copySuccess.style.display = 'inline';
-        setTimeout(() => {
-          copySuccess.style.display = 'none';
-        }, 3000);
-      });
-    });
+    function pauseTimer() {
+      isRunning = false;
+      clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      timeRemaining = 20 * 60;
+      currentRound = 1;
+      timerRound.textContent = 'Round 1 / 3';
+      updateTimerDisplay();
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+    updateTimerDisplay();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a07725483c09f01',t:'MTc2MzQ2ODY4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a0792549691c799',t:'MTc2MzQ2OTk5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
